@@ -1,0 +1,21 @@
+{
+  "schema": "novel-library-browser-dependencies-v1",
+  "packages": {
+    "pdfjs-dist": {
+      "version": "6.4.299",
+      "archive": "pdfjs-dist-6.4.299.tgz",
+      "url": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-6.4.299.tgz",
+      "sha256": "86269b40170eb41740ea05ad2102d71d33de4f122b34eb2f478be0ea7779c415",
+      "integrity": "sha512-AVl138zALtfaAPvADulE0PZThbYzCBS79nL4pOSL/6Sm/4AH5A21BD9VHt97OlCuzJuCpmeZtAtkinisF4Vb1g==",
+      "license": "Apache-2.0"
+    },
+    "tus-js-client": {
+      "version": "4.3.1",
+      "archive": "tus-js-client-4.3.1.tgz",
+      "url": "https://registry.npmjs.org/tus-js-client/-/tus-js-client-4.3.1.tgz",
+      "sha256": "919f46808b2c689be9214df5c0f21879bee4a4599b34e212ada8f14de1db9bc0",
+      "integrity": "sha512-ZLeYmjrkaU1fUsKbIi8JML52uAocjEZtBx4DKjRrqzrZa0O4MYwT6db+oqePlspV+FxXJAyFBc/L5gwUi2OFsg==",
+      "license": "MIT"
+    }
+  }
+}
