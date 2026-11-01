@@ -10,13 +10,14 @@ dependencies = [
     "defusedxml==0.7.1",
     "fastapi==0.159.1",
     "pillow==13.0.0",
-    "pypdf==6.21.2",
+    "pypdf==6.21.4",
     "telethon==1.45.0",
     "uvicorn==0.54.0",
 ]
 
 [tool.uv]
 package = false
+constraint-dependencies = ["pyasn1==0.6.5"]
 
 [dependency-groups]
 dev = [

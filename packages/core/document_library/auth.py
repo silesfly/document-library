@@ -231,10 +231,36 @@ class AuthService:
         conn.execute(text("DELETE FROM auth_tokens WHERE purpose='reset' AND target_id=:id AND consumed_at IS NULL"),
                      dict(id=user_id))
 
+    def _reserve_password_change(self, user_id):
+        now = self.now()
+        bucket = "change-password:" + digest(str(user_id))
+        with write_transaction(self.engine) as conn:
+            row = conn.execute(
+                text("SELECT * FROM auth_limits WHERE bucket=:bucket"),
+                dict(bucket=bucket),
+            ).mappings().first()
+            if row is not None:
+                elapsed = now - row["window_start"]
+                fresh = elapsed >= 600
+                if not fresh and (elapsed < 0 or row["attempts"] >= 10 or now < row["next_allowed"]):
+                    raise AuthError("try_later", 429)
+                start = now if fresh else row["window_start"]
+                attempts = 1 if fresh else row["attempts"] + 1
+            else:
+                start = now
+                attempts = 1
+            conn.execute(
+                text("""INSERT INTO auth_limits VALUES(:bucket,:start,:attempts,:next)
+                    ON CONFLICT(bucket) DO UPDATE SET window_start=excluded.window_start,
+                    attempts=excluded.attempts,next_allowed=excluded.next_allowed"""),
+                dict(bucket=bucket, start=start, attempts=attempts, next=now),
+            )
+
     def change_password(self, token: str, csrf: str, old: str, new: str):
         with self.engine.connect() as conn:
             actor = self.current(conn, token, csrf=csrf)
             old_hash = conn.execute(text("SELECT password_hash FROM users WHERE id=:id"), dict(id=actor["id"])).scalar_one()
+        self._reserve_password_change(actor["id"])
         if not self._verify(old_hash, old):
             raise AuthError("invalid_credentials")
         hashed = self._password_hash(new)
@@ -244,7 +270,6 @@ class AuthService:
                 raise AuthError("authentication_required")
             self._replace_password(conn, actor["id"], hashed)
             self.audit(conn, actor["id"], "password_changed", target=actor["id"])
-
     def reset_password(self, reset: str, new: str):
         hashed = self._password_hash(new)
         with write_transaction(self.engine) as conn:

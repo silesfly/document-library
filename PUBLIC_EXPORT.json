@@ -236,9 +236,9 @@
       "sha256": "2f10b5a9c6b08c92b41fcb2211f12280238ce3513afd974915210eba09a3d9f4"
     },
     {
-      "byte_size": 13191,
+      "byte_size": 14464,
       "path": "packages/core/document_library/auth.py",
-      "sha256": "a717555332c462eed8d4f2d6c69d3b0798cefbb2a4d8eb44ea7008477e464205"
+      "sha256": "fcd4b607248e64a054ef62c5d420674e8798086ed8d63abb5188e1f2da431c70"
     },
     {
       "byte_size": 21095,
@@ -491,9 +491,9 @@
       "sha256": "180e87b960953ba2cfa6efa83429e0541fdfd34b7d6e477c46023a39c6e008ca"
     },
     {
-      "byte_size": 449,
+      "byte_size": 493,
       "path": "pyproject.toml",
-      "sha256": "e548715490893ee1e72263fd1842b4b2b3a96c6596c78504ea89c20cd9fdd65a"
+      "sha256": "803b7f4acb31722bb8bbd334298ed75b636f8586cd735b4f71fed521c21961f4"
     },
     {
       "byte_size": 8413,
@@ -661,6 +661,11 @@
       "sha256": "a1272bf419e7a130feb593595247109d2282ecacf3a228783c45e04510b3de20"
     },
     {
+      "byte_size": 7164,
+      "path": "tests/test_password_change_limits.py",
+      "sha256": "124992889e9f4591ca8390244533ba24558f5da3a34f6fdfe5dbb3b812f885b9"
+    },
+    {
       "byte_size": 16985,
       "path": "tests/test_permissions.py",
       "sha256": "11a8b8bffdc69aa7fb61177e7935cde87cc168e152de7c5b2ac98dc159ec23c9"
@@ -791,9 +796,9 @@
       "sha256": "1d3bfcf67308671e399b5d30bbd92ebefe246c586a184e3dd4fe0e1fd324a42a"
     },
     {
-      "byte_size": 72319,
+      "byte_size": 72390,
       "path": "uv.lock",
-      "sha256": "c5aa0e7719a29f4dec78a58ce4fba5dfd109e1285b3ca8436ccfe299bd87f0a9"
+      "sha256": "5f9303baf9c412880f0f42275cf88d9a7ab54785b35a6226e1b5d28bd1ef828c"
     }
   ],
   "format": "DocumentLibrarySourceExportV1",
